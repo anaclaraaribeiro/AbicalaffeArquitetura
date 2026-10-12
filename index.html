@@ -87,13 +87,15 @@ header .btn{padding:12px 22px;font-size:11px}
 .pj{padding:120px var(--pad)}
 .pj h2{font-size:56px}
 .pj .sh{align-items:flex-start;margin-bottom:60px}.pj .sh p{max-width:none;font-size:17px;line-height:1.75;margin-top:14px}
-.pgrid{display:grid;grid-template-columns:500fr 738fr;gap:40px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;align-items:start}
 .pgrid figure img{width:100%;object-fit:cover;transition:transform .9s}
 .pgrid .ph{overflow:hidden}.pgrid figure:hover img{transform:scale(1.06)}
 .pgrid figcaption{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font:400 18px Raleway,sans-serif}
 .pgrid figcaption span{font:600 9px Inter;letter-spacing:.14em;color:var(--orange)}
-.pgrid img{height:auto;display:block}
-.pgrid .right{display:grid;grid-template-columns:350fr 348fr;gap:40px;margin-top:140px;align-items:start}
+.pgrid img{width:100%;aspect-ratio:500/480;object-fit:cover;display:block}
+.pgrid .right{display:contents}
+.pgrid .right figure:nth-of-type(1){margin-top:40px}
+.pgrid .right figure:nth-of-type(2){margin-top:80px}
 
 .quote{grid-column:1/-1;font:italic 300 21px/1.5 Raleway,sans-serif;color:#6b6761;margin-top:28px}
 /* values */
@@ -141,6 +143,7 @@ footer ul{padding:0}footer li a{transition:color .3s,padding .3s}footer li a:hov
  .about{grid-template-columns:1fr;gap:40px;padding:80px var(--pad)}
  .cards4{grid-template-columns:1fr 1fr}.sh{flex-direction:column;align-items:flex-start}
  .pgrid,.pgrid .right{grid-template-columns:1fr;margin-top:0}
+ .pgrid .right figure:nth-of-type(n){margin-top:0}
  .fg{grid-template-columns:1fr}
  .facts{grid-template-columns:1fr}
  h1,h2:not(.cth){font-size:40px!important}
