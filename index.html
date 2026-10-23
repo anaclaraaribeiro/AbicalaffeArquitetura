@@ -77,7 +77,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hero{position:relative;height:100vh;height:100svh;min-height:640px;max-height:1000px;color:var(--creme);overflow:hidden;background:var(--tinta)}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:heroIn 2.4s var(--ease) forwards}
 @keyframes heroIn{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,27,24,.45) 0%,rgba(29,27,24,.05) 35%,rgba(29,27,24,.15) 60%,rgba(29,27,24,.7) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,27,24,.72) 0%,rgba(29,27,24,.4) 12%,rgba(29,27,24,.06) 30%,rgba(29,27,24,.15) 60%,rgba(29,27,24,.7) 100%)}
 .hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:28px}
 .hero-top{display:flex;justify-content:flex-end;align-items:flex-end;gap:24px;margin-bottom:40px}
 .hero-top .label{opacity:.85;line-height:2}
@@ -95,13 +95,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .manifesto-left .serif{font-size:30px;color:var(--terracota);margin-top:20px;line-height:1}
 .manifesto-left .label{margin-top:12px}
 .manifesto-left h2{font-size:clamp(36px,3.9vw,56px);margin-top:80px}
-.manifesto-img{aspect-ratio:520/500;width:100%;object-fit:cover}
+.manifesto-img{aspect-ratio:520/500;width:100%;object-fit:cover;object-position:center 62%}
 .manifesto-text p{opacity:.8;line-height:1.6;margin-bottom:24px}
 .manifesto-text .btn{margin-top:16px}
 
 /* faixa */
 .faixa{background:var(--terracota);color:var(--creme);overflow:hidden;padding:26px 0}
-.faixa-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
+.faixa-track{display:flex;width:max-content;animation:marquee 76s linear infinite}
 .faixa-track ul{display:flex;align-items:center;list-style:none;gap:28px;padding-right:28px;font-size:22px;white-space:nowrap}
 .faixa-track li{display:flex;align-items:center;gap:28px}
 .faixa-track li::before{content:"";width:14px;height:14px;background:currentColor;clip-path:polygon(50% 0,59% 30%,85% 15%,70% 41%,100% 50%,70% 59%,85% 85%,59% 70%,50% 100%,41% 70%,15% 85%,30% 59%,0 50%,30% 41%,15% 15%,41% 30%)}
@@ -177,7 +177,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .serv .arr{justify-self:end;font-family:Inter,system-ui,sans-serif;font-size:26px;transition:transform .35s var(--ease)}
 .serv:hover{padding-left:16px;padding-right:16px;background:rgba(232,218,199,.5)}
 .serv:hover .arr{transform:translate(3px,-3px);color:var(--terracota)}
-.serv-preview{position:fixed;left:0;top:0;width:220px;height:280px;pointer-events:none;z-index:60;will-change:transform}
+.serv-preview{position:fixed;left:0;top:0;width:160px;height:200px;pointer-events:none;z-index:60;will-change:transform}
 .sp-inner{position:relative;width:100%;height:100%;overflow:hidden;border-radius:2px;opacity:0;transform:scale(.8) rotate(-3deg);transition:opacity .35s var(--ease),transform .5s var(--ease);box-shadow:0 30px 60px -30px rgba(29,27,24,.5)}
 .serv-preview.show .sp-inner{opacity:1;transform:none}
 .sp-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .4s var(--ease),transform .8s var(--ease)}
@@ -187,10 +187,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* valores */
 .valores{padding:0 0 100px}
 .grid-val{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:40px}
-.val{display:flex;flex-direction:column;justify-content:space-between;min-height:420px;padding:24px 28px 28px;border-radius:4px;transition:transform .5s var(--ease)}
-.val:hover{transform:translateY(-6px)}
+.val{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;padding:24px 28px 28px;border-radius:4px;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.val>*{position:relative;z-index:1}
+.val::before{content:"";position:absolute;inset:0;background:rgba(29,27,24,.1);clip-path:circle(0% at 0% 100%);transition:clip-path .8s var(--ease)}
+.val::after{content:"";position:absolute;top:22px;right:22px;width:64px;height:64px;background:currentColor;-webkit-mask:url(assets/simbolo.svg) center/contain no-repeat;mask:url(assets/simbolo.svg) center/contain no-repeat;opacity:0;transform:rotate(-40deg) scale(.6);transition:opacity .5s var(--ease),transform .8s var(--ease)}
+.val:hover{transform:translateY(-8px);box-shadow:0 28px 48px -28px rgba(29,27,24,.55)}
+.val:hover::before{clip-path:circle(150% at 0% 100%)}
+.val:hover::after{opacity:.9;transform:none}
+.val:hover h3{transform:translateY(-6px)}
 .val .serif{font-size:28px}
-.val h3{font-size:44px;font-weight:300;letter-spacing:-.03em;line-height:1.1}
+.val h3{font-size:44px;font-weight:300;letter-spacing:-.03em;line-height:1.1;transition:transform .6s var(--ease)}
 .val p{font-size:14px;opacity:.85;margin-top:14px;max-width:240px;line-height:1.5}
 .v1{background:var(--terracota);color:var(--creme)}.v2{background:var(--verde);color:var(--creme)}
 .v3{background:var(--azul)}.v4{background:var(--areia)}
@@ -203,7 +209,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .contato .ctas{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
 .contato-art{position:relative}
 .contato-art img:first-child{width:100%;aspect-ratio:500/640;object-fit:cover}
-.contato-art .sym{position:absolute;width:144%;max-width:none;left:-21%;top:-8%;pointer-events:none}
+.contato-art .sym{position:absolute;width:116%;max-width:none;left:-8%;top:-6%;pointer-events:none}
 
 /* rodapé */
 .rodape{background:var(--tinta);color:var(--creme);padding:96px 0 40px}
@@ -327,7 +333,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           </div>
           <h2 class="display">Cada linha<br>conta uma<br>história.</h2>
         </div>
-        <img class="manifesto-img rv" src="assets/projeto-living-ipe.jpg" alt="Living com painel em tijolo escuro, marcenaria em madeira e um cachorro sentado ao centro" loading="lazy">
+        <img class="manifesto-img rv" src="assets/manifesto.jpg" alt="Sala de jantar com mesa de madeira, parede em porcelanato marmorizado e luz natural entrando pela janela" loading="lazy">
         <div class="manifesto-text rv">
           <p>A Abicalaffe Arquitetura nasce do olhar da arquiteta Rita de Cássia Abicalaffe: uma arquitetura humana, que começa pela escuta e termina em espaços onde a vida acontece com leveza.</p>
           <p>Como o camaleão do nosso símbolo, nos adaptamos a cada pessoa, terreno e história, sem perder a assinatura: linhas limpas, materiais naturais e luz bem pensada.</p>
@@ -339,8 +345,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <div class="faixa" aria-label="Especialidades">
     <div class="faixa-track">
-      <ul><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li></ul>
-      <ul aria-hidden="true"><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li></ul>
+      <ul><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li></ul>
+      <ul aria-hidden="true"><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li><li>Arquitetura residencial</li><li>Interiores</li><li>Projetos comerciais</li><li>Acompanhamento de obra</li><li>Todo o Brasil</li></ul>
     </div>
   </div>
 
@@ -471,15 +477,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <script>
 // video: arquivo .mp4 em assets/ (a imagem de mesmo nome vira a capa)
 const projetos = [
-  { nome: "Espaço Gourmet", cat: "Residencial", img: "video-espaco-gourmet", video: true, alt: "Antes e depois de um espaço gourmet residencial com churrasqueira" },
-  { nome: "Comemore & Decore", cat: "Comercial", img: "video-comemore-decore", video: true, alt: "Loja Comemore & Decore com prateleiras de madeira e painel vazado" },
+  // vídeos espalhados na grade (posições 1, 3 e 6) para não ficarem juntos
+  { nome: "Espaço Gourmet", cat: "Residencial", img: "video-espaco-gourmet", video: true, alt: "Espaço gourmet com churrasqueira, ilha e forro de madeira" },
   { nome: "Le Château", cat: "Projeto arquitetônico", img: "projeto-le-chateau", alt: "Fachada com muxarabi de madeira, cobogós e volumes claros",
     desc: "Muxarabi de madeira, cobogós e volumes claros que filtram a luz e dão privacidade à fachada." },
+  { nome: "Comemore & Decore", cat: "Comercial", img: "video-comemore-decore", video: true, alt: "Loja Comemore & Decore com prateleiras de madeira e painel vazado" },
   { nome: "Porcelanato além das superfícies", titulo: "Porcelanato<br>além das<br>superfícies", cat: "Interiores", img: "projeto-porcelanato", alt: "Adega com prateleiras metálicas pretas sobre parede em porcelanato marmorizado",
     desc: "Porcelanato de veios marcantes como pano de fundo de uma adega em serralheria preta." },
-  { nome: "Casa Rural", cat: "Residencial", img: "video-casa-rural", video: true, alt: "Casa térrea em madeira escura e clara em meio ao campo" },
   { nome: "Lavabo Social", cat: "Interiores", img: "projeto-lavabo-social", alt: "Lavabo com painel ripado, marcenaria em madeira e espelho orgânico",
     desc: "Painel ripado, marcenaria em madeira e espelho orgânico em poucos metros quadrados." },
+  { nome: "Casa Rural", cat: "Residencial", img: "video-casa-rural", video: true, alt: "Casa térrea em madeira escura e clara em meio ao campo" },
   { nome: "Cozinha", cat: "Interiores", img: "projeto-cozinha", alt: "Cozinha com churrasqueira em inox, revestimento cerâmico rosado e marcenaria clara",
     desc: "Revestimento cerâmico artesanal, churrasqueira em inox e marcenaria clara com puxadores esculpidos." },
   { nome: "Studio", cat: "Interiores", img: "projeto-studio", alt: "Cortes de um studio com cama, cozinha compacta e marcenaria em madeira" },
@@ -512,7 +519,7 @@ checarVideos();
 
 // projeto em destaque: carrossel infinito (clones nas pontas)
 const el = (id) => document.getElementById(id);
-const destaques = [2, 5, 6, 3].map((i) => projetos[i]); // Le Château, Lavabo Social, Cozinha, Porcelanato
+const destaques = ["Le Château", "Lavabo Social", "Cozinha", "Porcelanato além das superfícies"].map((n) => projetos.find((p) => p.nome === n));
 const total = destaques.length;
 const track = el("d-track");
 const slides = [destaques[total - 1], ...destaques, destaques[0]];
@@ -624,7 +631,7 @@ if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
   const passo = () => {
     px += (mx - px) * 0.14;
     py += (my - py) * 0.14;
-    preview.style.transform = `translate3d(${px - 110}px, ${py - 140}px, 0)`;
+    preview.style.transform = `translate3d(${px - 80}px, ${py - 100}px, 0)`;
     if (preview.classList.contains("show") || Math.abs(mx - px) > 0.5) requestAnimationFrame(passo);
     else rodando = false;
   };
