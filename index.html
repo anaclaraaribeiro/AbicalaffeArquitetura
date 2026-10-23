@@ -132,12 +132,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .destaque .head-row{position:relative;border-color:rgba(244,235,223,.2)}
 .d-timer{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden}
 .d-timer span{display:block;height:100%;background:var(--creme);transform-origin:left;transform:scaleX(0)}
-.d-arrow{position:absolute;top:50%;z-index:2;width:52px;height:52px;margin-top:-26px;border-radius:50%;background:rgba(244,235,223,.92);color:var(--tinta);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px -12px rgba(29,27,24,.6);transition:transform .3s var(--ease),background .3s}
+.d-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.d-arrow{pointer-events:auto;width:56px;height:56px;border-radius:50%;border:1px solid rgba(244,235,223,.45);color:var(--creme);display:grid;place-items:center;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
 .d-arrow svg{width:20px;height:20px}
-.d-arrow:hover{background:#fff;transform:scale(1.08)}
-.d-arrow.prev{left:16px}.d-arrow.next{right:16px}
+.d-arrow:hover{background:var(--creme);color:var(--tinta);border-color:var(--creme)}
+.d-arrow:active{transform:scale(.94)}
 .destaque .head-row .serif{color:var(--creme)}
-.destaque-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:40px;align-items:end;margin-top:58px}
+.destaque-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:40px;align-items:end;margin-top:58px}
 .destaque h2{font-size:clamp(56px,7.5vw,108px);line-height:.92;letter-spacing:-.035em;white-space:nowrap}
 .destaque-cat{margin-top:24px;font-size:15px;opacity:.7}
 .d-car{position:relative;width:100%;aspect-ratio:5/6;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
@@ -229,6 +230,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .manifesto-left h2{margin-top:0;margin-left:auto}
   .destaque-grid{grid-template-columns:1fr;gap:40px}
   .d-car{width:min(500px,100%);justify-self:center}
+  .d-nav{position:static;justify-content:center;gap:16px;margin-top:-16px}
   .destaque-right{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
   .destaque-right p{margin-bottom:0;min-height:0}
   .serv{grid-template-columns:80px 1fr 320px 40px}
@@ -270,8 +272,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .destaque-grid{gap:32px}
   .destaque-right{flex-direction:column;align-items:flex-start}
   .destaque .wrap{padding-top:72px;padding-bottom:72px}
-  .d-arrow{width:44px;height:44px;margin-top:-22px}
-  .d-arrow.prev{left:12px}.d-arrow.next{right:12px}
+  .d-arrow{width:48px;height:48px}
   .dados{grid-template-columns:1fr;gap:20px}
   .servicos h2{margin-bottom:56px}
   .grid-val{grid-template-columns:1fr}
@@ -370,8 +371,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         </div>
         <div class="d-car" id="d-car" aria-roledescription="carrossel">
           <div class="d-track" id="d-track"></div>
-          <button class="d-arrow prev" id="d-prev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-          <button class="d-arrow next" id="d-next" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <div class="d-nav">
+          <button class="d-arrow" id="d-prev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button class="d-arrow" id="d-next" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
         <div class="destaque-right">
           <p class="d-txt" id="d-desc">Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala.</p>
