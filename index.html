@@ -553,12 +553,14 @@ el("d-next").addEventListener("click", () => { ir(1); reiniciarAuto(); });
 
 // passa sozinho a cada 5s enquanto a seção está na tela; clique/arraste reinicia a contagem
 const destaque = document.querySelector(".destaque");
-let auto, visivel = false;
-function reiniciarAuto() {
-  clearInterval(auto);
-  if (visivel && !document.hidden) auto = setInterval(() => ir(1), 5000);
-}
-new IntersectionObserver(([e]) => { visivel = e.isIntersecting; reiniciarAuto(); }, { threshold: 0.2 }).observe(destaque);
+let ultimaTroca = Date.now();
+function reiniciarAuto() { ultimaTroca = Date.now(); }
+setInterval(() => {
+  const r = destaque.getBoundingClientRect();
+  const naTela = r.top < innerHeight * 0.8 && r.bottom > innerHeight * 0.2;
+  if (!naTela || document.hidden) { ultimaTroca = Date.now(); return; }
+  if (Date.now() - ultimaTroca >= 5000) { ir(1); ultimaTroca = Date.now(); }
+}, 250);
 document.addEventListener("visibilitychange", reiniciarAuto);
 
 // arrastar no carrossel
