@@ -551,17 +551,16 @@ addEventListener("resize", () => { clearTimeout(tAjuste); tAjuste = setTimeout(a
 el("d-prev").addEventListener("click", () => { ir(-1); reiniciarAuto(); });
 el("d-next").addEventListener("click", () => { ir(1); reiniciarAuto(); });
 
-// passa sozinho a cada 6s, só com a seção na tela e sem o mouse em cima
+// passa sozinho a cada 5s enquanto a seção está na tela (pausa só com o mouse sobre a imagem)
 const destaque = document.querySelector(".destaque");
-const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let auto, visivel = false, pausado = false;
 function reiniciarAuto() {
   clearInterval(auto);
-  if (!semMovimento && visivel && !pausado && !document.hidden) auto = setInterval(() => ir(1), 6000);
+  if (visivel && !pausado && !document.hidden) auto = setInterval(() => ir(1), 5000);
 }
-new IntersectionObserver(([e]) => { visivel = e.isIntersecting; reiniciarAuto(); }, { threshold: 0.4 }).observe(destaque);
-destaque.addEventListener("mouseenter", () => { pausado = true; reiniciarAuto(); });
-destaque.addEventListener("mouseleave", () => { pausado = false; reiniciarAuto(); });
+new IntersectionObserver(([e]) => { visivel = e.isIntersecting; reiniciarAuto(); }, { threshold: 0.2 }).observe(destaque);
+el("d-car").addEventListener("mouseenter", () => { pausado = true; reiniciarAuto(); });
+el("d-car").addEventListener("mouseleave", () => { pausado = false; reiniciarAuto(); });
 document.addEventListener("visibilitychange", reiniciarAuto);
 
 // arrastar no carrossel
