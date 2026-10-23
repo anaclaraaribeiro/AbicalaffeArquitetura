@@ -135,7 +135,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .d-nav{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
 .d-arrow{pointer-events:auto;width:56px;height:56px;border-radius:50%;border:1px solid rgba(244,235,223,.45);color:var(--creme);display:grid;place-items:center;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
 .d-arrow svg{width:20px;height:20px}
-.d-arrow:hover{background:var(--creme);color:var(--tinta);border-color:var(--creme)}
+@media (hover:hover){.d-arrow:hover{background:var(--creme);color:var(--tinta);border-color:var(--creme)}}
 .d-arrow:active{transform:scale(.94)}
 .destaque .head-row .serif{color:var(--creme)}
 .destaque-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:40px;align-items:end;margin-top:58px}
@@ -163,7 +163,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .atelie-txt p{font-size:17px;opacity:.75;margin-top:40px;max-width:600px}
 .dados{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:24px;border-top:1px solid rgba(29,27,24,.2);margin-top:40px;padding-top:28px}
 .dados strong{display:block;font-size:26px;font-weight:300;letter-spacing:-.02em;line-height:1.2}
-.dados .label{display:block;margin-top:8px;opacity:.55}
+.dados .label{display:block;margin-bottom:8px;opacity:.55}
 .atelie-txt .btn{margin-top:48px}
 
 /* serviços */
@@ -260,9 +260,37 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .contato-art{max-width:480px;width:86%;margin:0 auto}
 }
 @media (max-width:600px){
-  .manifesto,.projetos,.servicos{padding:80px 0}
-  .manifesto-grid{grid-template-columns:1fr;margin-top:64px;gap:40px}
-  .manifesto-left h2{margin-left:0}
+  .manifesto,.projetos,.servicos{padding:64px 0}
+  .manifesto h1{margin-top:28px}
+  .manifesto-grid{grid-template-columns:1fr;margin-top:48px;gap:32px}
+  .manifesto-left{flex-wrap:nowrap;align-items:flex-end;justify-content:space-between;gap:16px}
+  .manifesto-left .sym{width:52px}
+  .manifesto-left .serif{font-size:24px;margin-top:12px}
+  .manifesto-left .label{font-size:10px;letter-spacing:.1em;margin-top:8px}
+  .manifesto-left h2{font-size:30px;margin:0;text-align:right}
+  .manifesto-text p{margin-bottom:16px}
+  .projetos-intro{margin:28px 0 40px}
+  .projetos-foot{margin-top:40px;align-items:stretch}
+  .servicos h2{margin:20px 0 40px}
+  .serv{padding:24px 0}
+  .valores{padding-bottom:64px}
+  .grid-val{margin-top:28px;gap:12px}
+  .atelie{padding:48px 0}
+  .atelie-txt{padding-top:40px}
+  .atelie-txt blockquote{margin-top:20px}
+  .atelie-txt p{margin-top:24px}
+  .dados{margin-top:28px;padding-top:24px}
+  .atelie-txt .btn{margin-top:32px}
+  .contato h2{margin-top:20px}
+  .contato p{margin-top:20px}
+  .contato .ctas{margin-top:32px}
+  .contato .wrap{gap:48px}
+  .contato-art{width:100%;max-width:none}
+  .contato-art img:first-child{aspect-ratio:4/5}
+  .contato-art .sym{width:84%;left:8%;top:9%}
+  .br-d{display:none}
+  main .btn{width:100%;justify-content:center}
+  .destaque-right{align-items:stretch}
   .hero-top{flex-direction:column;align-items:flex-start;margin-bottom:28px}
   .hero-tag{text-align:left}
   .faixa-track ul{font-size:18px}
@@ -270,18 +298,17 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .card-meta{font-size:12px;grid-template-columns:1fr;gap:2px}
   .card-meta .serif{display:none}
   .projetos-foot{flex-direction:column;align-items:flex-start}
-  .destaque-grid{gap:32px}
+  .destaque-grid{gap:24px}
   .destaque-right{flex-direction:column;align-items:flex-start}
-  .destaque .wrap{padding-top:72px;padding-bottom:72px}
+  .destaque .wrap{padding-top:64px;padding-bottom:64px}
   .d-arrow{width:48px;height:48px}
   .dados{grid-template-columns:1fr;gap:20px}
-  .servicos h2{margin-bottom:56px}
   .grid-val{grid-template-columns:1fr}
-  .val{min-height:260px}
-  .contato .wrap{padding-top:88px;padding-bottom:96px}
+  .val{min-height:220px}
+  .contato .wrap{padding-top:64px;padding-bottom:72px}
   .contato .btn{width:100%;justify-content:center}
   .rodape-cols{grid-template-columns:1fr}
-  .rodape-logo{margin:64px 0 40px}
+  .rodape-logo{margin:48px 0 32px}
   .btn{padding:16px 22px;font-size:13px}
 }
 </style>
@@ -393,9 +420,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <blockquote class="rv">“Mais do que um projeto, entregar espaços com alma, valor e sentimento.”</blockquote>
         <p class="rv">Um só olhar acompanha o seu projeto do começo ao fim, para que arquitetura e interiores conversem entre si. Do primeiro café à entrega das chaves.</p>
         <div class="dados rv">
-          <div><strong>Guarapuava</strong><span class="label">Nosso ateliê</span></div>
-          <div><strong>Todo o Brasil</strong><span class="label">Onde projetamos</span></div>
-          <div><strong>Arq. + Interiores</strong><span class="label">Do terreno ao detalhe</span></div>
+          <div><span class="label">Nosso ateliê</span><strong>Guarapuava</strong></div>
+          <div><span class="label">Onde projetamos</span><strong>Todo o Brasil</strong></div>
+          <div><span class="label">Do terreno ao detalhe</span><strong>Arq. + Interiores</strong></div>
         </div>
         <a class="btn btn-terracota rv" href="#contato">Entrar em contato <span class="arr">↗</span></a>
       </div>
@@ -433,7 +460,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="wrap">
       <div>
         <p class="label rv">07 · Vamos conversar</p>
-        <h2 class="display rv">Abra-se para o<br>real viver.</h2>
+        <h2 class="display rv">Abra-se para o<br class="br-d"> real viver.</h2>
         <p class="rv">Conte para a gente sobre o seu espaço. Respondemos pessoalmente e marcamos um café, no ateliê em Guarapuava ou por vídeo, de qualquer lugar do Brasil.</p>
         <div class="ctas rv">
           <a class="btn btn-terracota" href="https://wa.me/554284127051" target="_blank" rel="noopener">Chamar no WhatsApp <span class="arr">↗</span></a>
@@ -441,7 +468,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         </div>
       </div>
       <div class="contato-art rv">
-        <img src="assets/projeto-casa-bosque.jpg" alt="Varanda com deck de madeira e pergolado aberta para o bosque" loading="lazy">
+        <img src="assets/contato.jpg" alt="Living com painel em madeira, quadro listrado e aparador em pedra" loading="lazy">
         <img class="sym" src="assets/simbolo.svg" alt="" loading="lazy">
       </div>
     </div>
