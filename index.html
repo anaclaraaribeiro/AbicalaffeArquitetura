@@ -128,8 +128,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .destaque{position:relative;color:var(--creme);overflow:hidden;background:var(--verde-esc)}
 .destaque-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .destaque::before{content:"";position:absolute;inset:0;background:rgba(47,70,57,.82);z-index:1}
-.destaque .wrap{position:relative;z-index:2;padding:96px clamp(20px,2.8vw,40px) 48px}
-.destaque .head-row{border-color:rgba(244,235,223,.2)}
+.destaque .wrap{position:relative;z-index:2;padding:96px clamp(20px,2.8vw,40px)}
+.destaque .head-row{position:relative;border-color:rgba(244,235,223,.2)}
+.d-timer{position:absolute;left:0;right:0;bottom:-1px;height:2px;overflow:hidden}
+.d-timer span{display:block;height:100%;background:var(--creme);transform-origin:left;transform:scaleX(0)}
+.d-arrow{position:absolute;top:50%;z-index:2;width:52px;height:52px;margin-top:-26px;border-radius:50%;background:rgba(244,235,223,.92);color:var(--tinta);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 30px -12px rgba(29,27,24,.6);transition:transform .3s var(--ease),background .3s}
+.d-arrow svg{width:20px;height:20px}
+.d-arrow:hover{background:#fff;transform:scale(1.08)}
+.d-arrow.prev{left:16px}.d-arrow.next{right:16px}
 .destaque .head-row .serif{color:var(--creme)}
 .destaque-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:40px;align-items:end;margin-top:58px}
 .destaque h2{font-size:clamp(56px,7.5vw,108px);line-height:.92;letter-spacing:-.035em;white-space:nowrap}
@@ -145,9 +151,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .d-txt{transition:opacity .4s var(--ease),transform .5s var(--ease)}
 .d-txt.out{opacity:0;transform:translateY(16px)}
 .destaque-right p{opacity:.8;max-width:340px;margin-bottom:40px;min-height:5em}
-.destaque-nav{display:flex;justify-content:space-between;margin-top:48px}
-.destaque-nav button{font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.7;transition:opacity .3s}
-.destaque-nav button:hover{opacity:1}
 .fade{opacity:0}
 
 /* ateliê */
@@ -266,6 +269,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .projetos-foot{flex-direction:column;align-items:flex-start}
   .destaque-grid{gap:32px}
   .destaque-right{flex-direction:column;align-items:flex-start}
+  .destaque .wrap{padding-top:72px;padding-bottom:72px}
+  .d-arrow{width:44px;height:44px;margin-top:-22px}
+  .d-arrow.prev{left:12px}.d-arrow.next{right:12px}
   .dados{grid-template-columns:1fr;gap:20px}
   .servicos h2{margin-bottom:56px}
   .grid-val{grid-template-columns:1fr}
@@ -356,21 +362,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <section class="destaque" aria-label="Projeto em destaque">
     <img class="destaque-bg" src="assets/hero.jpg" alt="" loading="lazy">
     <div class="wrap">
-      <div class="head-row"><span class="label">03 · Em destaque</span><span class="serif" id="d-count">2 / 8</span></div>
+      <div class="head-row"><span class="label">03 · Em destaque</span><span class="serif" id="d-count">1 / 4</span><span class="d-timer" aria-hidden="true"><span id="d-timer"></span></span></div>
       <div class="destaque-grid">
         <div class="destaque-left d-txt">
           <h2 class="display" id="d-title">Casa<br>Bosque</h2>
           <p class="destaque-cat" id="d-cat">Residencial · Projeto em destaque</p>
         </div>
-        <div class="d-car" id="d-car" aria-roledescription="carrossel"><div class="d-track" id="d-track"></div></div>
+        <div class="d-car" id="d-car" aria-roledescription="carrossel">
+          <div class="d-track" id="d-track"></div>
+          <button class="d-arrow prev" id="d-prev" aria-label="Projeto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+          <button class="d-arrow next" id="d-next" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
         <div class="destaque-right">
           <p class="d-txt" id="d-desc">Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala.</p>
           <a class="btn btn-creme" href="https://www.instagram.com/arq.abicalaffe/" target="_blank" rel="noopener">Ver projeto <span class="arr">↗</span></a>
         </div>
-      </div>
-      <div class="destaque-nav">
-        <button id="d-prev" aria-label="Projeto anterior">←&nbsp; Anterior</button>
-        <button id="d-next" aria-label="Próximo projeto">Próximo &nbsp;→</button>
       </div>
     </div>
   </section>
@@ -483,11 +489,12 @@ grid.innerHTML = projetos.map((p, i) => `
 
 // projeto em destaque: carrossel infinito (clones nas pontas)
 const el = (id) => document.getElementById(id);
-const total = projetos.length;
+const destaques = [1, 3, 7, 4].map((i) => projetos[i]); // Casa Bosque, Residência Araucária, Casa Serra, Apartamento Luz
+const total = destaques.length;
 const track = el("d-track");
-const slides = [projetos[total - 1], ...projetos, projetos[0]];
+const slides = [destaques[total - 1], ...destaques, destaques[0]];
 track.innerHTML = slides.map((p) => `<div class="d-slide"><img src="assets/${p.img}.jpg" alt="${p.alt}" draggable="false" decoding="async"></div>`).join("");
-let atual = 1, pos = atual + 1, ocupado = false;
+let atual = 0, pos = atual + 1, ocupado = false;
 
 function posicionar(animar) {
   track.classList.toggle("anim", animar);
@@ -495,7 +502,7 @@ function posicionar(animar) {
   [...track.children].forEach((s, i) => s.classList.toggle("on", i === pos));
 }
 function atualizarTexto() {
-  const p = projetos[atual];
+  const p = destaques[atual];
   const txts = document.querySelectorAll(".destaque .d-txt");
   txts.forEach((n) => n.classList.add("out"));
   setTimeout(() => {
@@ -536,7 +543,7 @@ function ajustarTitulo() {
   const atualHtml = h.innerHTML;
   h.style.fontSize = "";
   let size = parseFloat(getComputedStyle(h).fontSize);
-  for (const p of projetos) {
+  for (const p of destaques) {
     h.innerHTML = p.nome.replace(" ", "<br>");
     while (h.scrollWidth > h.clientWidth + 1 && size > 28) {
       size -= 2;
@@ -553,15 +560,23 @@ el("d-next").addEventListener("click", () => { ir(1); reiniciarAuto(); });
 
 // passa sozinho a cada 5s enquanto a seção está na tela; clique/arraste reinicia a contagem
 const destaque = document.querySelector(".destaque");
+const TEMPO = 5000;
 let ultimaTroca = Date.now();
 function reiniciarAuto() { ultimaTroca = Date.now(); }
 setInterval(() => {
   const r = destaque.getBoundingClientRect();
   const naTela = r.top < innerHeight * 0.8 && r.bottom > innerHeight * 0.2;
   if (!naTela || document.hidden) { ultimaTroca = Date.now(); return; }
-  if (Date.now() - ultimaTroca >= 5000) { ir(1); ultimaTroca = Date.now(); }
-}, 250);
+  if (Date.now() - ultimaTroca >= TEMPO) { ir(1); ultimaTroca = Date.now(); }
+}, 100);
 document.addEventListener("visibilitychange", reiniciarAuto);
+
+// timer: a linha embaixo de "Em destaque" enche até a próxima troca
+const barra = el("d-timer");
+(function desenhar() {
+  barra.style.transform = `scaleX(${Math.min(1, (Date.now() - ultimaTroca) / TEMPO)})`;
+  requestAnimationFrame(desenhar);
+})();
 
 // arrastar no carrossel
 let x0 = null;
