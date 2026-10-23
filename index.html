@@ -128,11 +128,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .destaque{position:relative;color:var(--creme);overflow:hidden;background:var(--verde-esc)}
 .destaque-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .destaque::before{content:"";position:absolute;inset:0;background:rgba(47,70,57,.82);z-index:1}
-.destaque .wrap{position:relative;z-index:2;padding-top:96px;padding-bottom:48px}
+.destaque .wrap{position:relative;z-index:2;padding:96px clamp(20px,2.8vw,40px) 48px}
 .destaque .head-row{border-color:rgba(244,235,223,.2)}
 .destaque .head-row .serif{color:var(--creme)}
-.destaque-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:50px;align-items:end;margin-top:58px}
-.destaque h2{font-size:clamp(64px,8.33vw,120px);line-height:.92;letter-spacing:-.035em}
+.destaque-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:40px;align-items:end;margin-top:58px}
+.destaque h2{font-size:clamp(56px,7.5vw,108px);line-height:.92;letter-spacing:-.035em;white-space:nowrap}
 .destaque-cat{margin-top:24px;font-size:15px;opacity:.7}
 .d-car{position:relative;width:100%;aspect-ratio:5/6;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .d-car:active{cursor:grabbing}
@@ -529,8 +529,40 @@ function fim() {
   ocupado = false;
 }
 posicionar(false);
-el("d-prev").addEventListener("click", () => ir(-1));
-el("d-next").addEventListener("click", () => ir(1));
+
+// título do destaque: um só tamanho que caiba o nome mais longo na coluna
+function ajustarTitulo() {
+  const h = el("d-title");
+  const atualHtml = h.innerHTML;
+  h.style.fontSize = "";
+  let size = parseFloat(getComputedStyle(h).fontSize);
+  for (const p of projetos) {
+    h.innerHTML = p.nome.replace(" ", "<br>");
+    while (h.scrollWidth > h.clientWidth + 1 && size > 28) {
+      size -= 2;
+      h.style.fontSize = size + "px";
+    }
+  }
+  h.innerHTML = atualHtml;
+}
+document.fonts.ready.then(ajustarTitulo);
+let tAjuste;
+addEventListener("resize", () => { clearTimeout(tAjuste); tAjuste = setTimeout(ajustarTitulo, 150); });
+el("d-prev").addEventListener("click", () => { ir(-1); reiniciarAuto(); });
+el("d-next").addEventListener("click", () => { ir(1); reiniciarAuto(); });
+
+// passa sozinho a cada 6s, só com a seção na tela e sem o mouse em cima
+const destaque = document.querySelector(".destaque");
+const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let auto, visivel = false, pausado = false;
+function reiniciarAuto() {
+  clearInterval(auto);
+  if (!semMovimento && visivel && !pausado && !document.hidden) auto = setInterval(() => ir(1), 6000);
+}
+new IntersectionObserver(([e]) => { visivel = e.isIntersecting; reiniciarAuto(); }, { threshold: 0.4 }).observe(destaque);
+destaque.addEventListener("mouseenter", () => { pausado = true; reiniciarAuto(); });
+destaque.addEventListener("mouseleave", () => { pausado = false; reiniciarAuto(); });
+document.addEventListener("visibilitychange", reiniciarAuto);
 
 // arrastar no carrossel
 let x0 = null;
@@ -540,7 +572,7 @@ car.addEventListener("pointerup", (e) => {
   if (x0 === null) return;
   const dx = e.clientX - x0;
   x0 = null;
-  if (Math.abs(dx) > 40) ir(dx < 0 ? 1 : -1);
+  if (Math.abs(dx) > 40) { ir(dx < 0 ? 1 : -1); reiniciarAuto(); }
 });
 car.addEventListener("pointerleave", () => { x0 = null; });
 
