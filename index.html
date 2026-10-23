@@ -187,16 +187,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* valores */
 .valores{padding:0 0 100px}
 .grid-val{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:40px}
-.val{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;padding:24px 28px 28px;border-radius:4px;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
-.val>*{position:relative;z-index:1}
-.val::before{content:"";position:absolute;inset:0;background:rgba(29,27,24,.1);clip-path:circle(0% at 0% 100%);transition:clip-path .8s var(--ease)}
-.val::after{content:"";position:absolute;top:22px;right:22px;width:64px;height:64px;background:currentColor;-webkit-mask:url(assets/simbolo.svg) center/contain no-repeat;mask:url(assets/simbolo.svg) center/contain no-repeat;opacity:0;transform:rotate(-40deg) scale(.6);transition:opacity .5s var(--ease),transform .8s var(--ease)}
-.val:hover{transform:translateY(-8px);box-shadow:0 28px 48px -28px rgba(29,27,24,.55)}
-.val:hover::before{clip-path:circle(150% at 0% 100%)}
-.val:hover::after{opacity:.9;transform:none}
-.val:hover h3{transform:translateY(-6px)}
+.val{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:420px;padding:24px 28px 28px;border-radius:4px;transition:transform .8s var(--ease)}
+.val::after{content:"";position:absolute;top:24px;right:24px;width:40px;height:40px;background:currentColor;-webkit-mask:url(assets/simbolo.svg) center/contain no-repeat;mask:url(assets/simbolo.svg) center/contain no-repeat;opacity:0;transition:opacity .8s var(--ease)}
+.val:hover{transform:translateY(-3px)}
+.val:hover::after{opacity:.45}
 .val .serif{font-size:28px}
-.val h3{font-size:44px;font-weight:300;letter-spacing:-.03em;line-height:1.1;transition:transform .6s var(--ease)}
+.val h3{font-size:44px;font-weight:300;letter-spacing:-.03em;line-height:1.1}
 .val p{font-size:14px;opacity:.85;margin-top:14px;max-width:240px;line-height:1.5}
 .v1{background:var(--terracota);color:var(--creme)}.v2{background:var(--verde);color:var(--creme)}
 .v3{background:var(--azul)}.v4{background:var(--areia)}
@@ -209,7 +205,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .contato .ctas{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
 .contato-art{position:relative}
 .contato-art img:first-child{width:100%;aspect-ratio:500/640;object-fit:cover}
-.contato-art .sym{position:absolute;width:116%;max-width:none;left:-8%;top:-6%;pointer-events:none}
+.contato-art .sym{position:absolute;width:120%;max-width:none;left:-10%;top:-6%;pointer-events:none}
 
 /* rodapé */
 .rodape{background:var(--tinta);color:var(--creme);padding:96px 0 40px}
@@ -446,7 +442,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       </div>
       <div class="contato-art rv">
         <img src="assets/projeto-casa-bosque.jpg" alt="Varanda com deck de madeira e pergolado aberta para o bosque" loading="lazy">
-        <img class="sym" src="assets/simbolo-grande.svg" alt="" loading="lazy">
+        <img class="sym" src="assets/simbolo.svg" alt="" loading="lazy">
       </div>
     </div>
   </section>
