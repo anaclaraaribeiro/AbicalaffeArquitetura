@@ -173,7 +173,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .serv .arr{justify-self:end;font-family:Inter,system-ui,sans-serif;font-size:26px;transition:transform .35s var(--ease)}
 .serv:hover{padding-left:16px;padding-right:16px;background:rgba(232,218,199,.5)}
 .serv:hover .arr{transform:translate(3px,-3px);color:var(--terracota)}
-.serv-preview{position:fixed;left:0;top:0;width:300px;height:380px;pointer-events:none;z-index:60;will-change:transform}
+.serv-preview{position:fixed;left:0;top:0;width:220px;height:280px;pointer-events:none;z-index:60;will-change:transform}
 .sp-inner{position:relative;width:100%;height:100%;overflow:hidden;border-radius:2px;opacity:0;transform:scale(.8) rotate(-3deg);transition:opacity .35s var(--ease),transform .5s var(--ease);box-shadow:0 30px 60px -30px rgba(29,27,24,.5)}
 .serv-preview.show .sp-inner{opacity:1;transform:none}
 .sp-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .4s var(--ease),transform .8s var(--ease)}
@@ -551,16 +551,14 @@ addEventListener("resize", () => { clearTimeout(tAjuste); tAjuste = setTimeout(a
 el("d-prev").addEventListener("click", () => { ir(-1); reiniciarAuto(); });
 el("d-next").addEventListener("click", () => { ir(1); reiniciarAuto(); });
 
-// passa sozinho a cada 5s enquanto a seção está na tela (pausa só com o mouse sobre a imagem)
+// passa sozinho a cada 5s enquanto a seção está na tela; clique/arraste reinicia a contagem
 const destaque = document.querySelector(".destaque");
-let auto, visivel = false, pausado = false;
+let auto, visivel = false;
 function reiniciarAuto() {
   clearInterval(auto);
-  if (visivel && !pausado && !document.hidden) auto = setInterval(() => ir(1), 5000);
+  if (visivel && !document.hidden) auto = setInterval(() => ir(1), 5000);
 }
 new IntersectionObserver(([e]) => { visivel = e.isIntersecting; reiniciarAuto(); }, { threshold: 0.2 }).observe(destaque);
-el("d-car").addEventListener("mouseenter", () => { pausado = true; reiniciarAuto(); });
-el("d-car").addEventListener("mouseleave", () => { pausado = false; reiniciarAuto(); });
 document.addEventListener("visibilitychange", reiniciarAuto);
 
 // arrastar no carrossel
@@ -586,7 +584,7 @@ if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
   const passo = () => {
     px += (mx - px) * 0.14;
     py += (my - py) * 0.14;
-    preview.style.transform = `translate3d(${px - 150}px, ${py - 190}px, 0)`;
+    preview.style.transform = `translate3d(${px - 110}px, ${py - 140}px, 0)`;
     if (preview.classList.contains("show") || Math.abs(mx - px) > 0.5) requestAnimationFrame(passo);
     else rodando = false;
   };
