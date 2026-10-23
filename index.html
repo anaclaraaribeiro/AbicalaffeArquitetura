@@ -115,8 +115,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .grid-proj{display:grid;grid-template-columns:repeat(4,1fr);gap:96px 32px}
 .card{display:block}
 .card-img{overflow:hidden;aspect-ratio:296/400;background:var(--areia)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
-.card:hover .card-img img{transform:scale(1.05)}
+.card-img img,.card-img video{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
+.card:hover .card-img img,.card:hover .card-img video{transform:scale(1.05)}
 .card-meta{display:grid;grid-template-columns:1fr auto;margin-top:18px;font-size:14px}
 .card-meta strong{font-weight:500;letter-spacing:.04em;text-transform:uppercase}
 .card-meta span{opacity:.55}
@@ -157,7 +157,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ateliê */
 .atelie{background:var(--areia);padding:80px 0}
 .atelie-grid{display:grid;grid-template-columns:46fr 54fr;align-items:center;max-width:var(--max);margin:0 auto}
-.atelie-img{width:100%;height:760px;object-fit:cover;object-position:center 30%}
+.atelie-img{width:100%;height:auto;aspect-ratio:908/802;object-fit:cover}
 .atelie-txt{padding:0 var(--pad) 0 100px}
 .atelie-txt blockquote{font-size:clamp(34px,3.6vw,52px);font-weight:300;letter-spacing:-.02em;line-height:1.12;margin-top:28px}
 .atelie-txt p{font-size:17px;opacity:.75;margin-top:40px;max-width:600px}
@@ -247,7 +247,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .grid-proj{grid-template-columns:repeat(2,1fr);gap:56px 20px}
   .projetos-intro{flex-direction:column;align-items:flex-start;gap:20px}
   .atelie-grid{grid-template-columns:1fr}
-  .atelie-img{height:auto;aspect-ratio:4/3}
   .atelie{padding:64px 0}
   .atelie-txt{padding:56px var(--pad) 0}
   .serv{grid-template-columns:56px 1fr 32px;gap:8px 0}
@@ -366,8 +365,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <div class="head-row"><span class="label">03 · Em destaque</span><span class="serif" id="d-count">1 / 4</span><span class="d-timer" aria-hidden="true"><span id="d-timer"></span></span></div>
       <div class="destaque-grid">
         <div class="destaque-left d-txt">
-          <h2 class="display" id="d-title">Casa<br>Bosque</h2>
-          <p class="destaque-cat" id="d-cat">Residencial · Projeto em destaque</p>
+          <h2 class="display" id="d-title">Le<br>Château</h2>
+          <p class="destaque-cat" id="d-cat">Projeto arquitetônico · Projeto em destaque</p>
         </div>
         <div class="d-car" id="d-car" aria-roledescription="carrossel">
           <div class="d-track" id="d-track"></div>
@@ -377,7 +376,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <button class="d-arrow" id="d-next" aria-label="Próximo projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         </div>
         <div class="destaque-right">
-          <p class="d-txt" id="d-desc">Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala.</p>
+          <p class="d-txt" id="d-desc">Muxarabi de madeira, cobogós e volumes claros que filtram a luz e dão privacidade à fachada.</p>
           <a class="btn btn-creme" href="https://www.instagram.com/arq.abicalaffe/" target="_blank" rel="noopener">Ver projeto <span class="arr">↗</span></a>
         </div>
       </div>
@@ -386,7 +385,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <section class="atelie" id="atelie">
     <div class="atelie-grid">
-      <img class="atelie-img rv" src="assets/atelie.jpg" alt="Rita de Cássia conversando com clientes no ateliê, em volta de uma mesa com amostras de materiais" loading="lazy">
+      <img class="atelie-img rv" src="assets/atelie.jpg" alt="Rita de Cássia e equipe do ateliê em frente a uma parede de folhagens" loading="lazy">
       <div class="atelie-txt">
         <p class="label rv">04 · O ateliê</p>
         <blockquote class="rv">“Mais do que um projeto, entregar espaços com alma, valor e sentimento.”</blockquote>
@@ -407,9 +406,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <h2 class="display rv">Do terreno ao último detalhe.</h2>
       <ol>
         <!-- data-img: imagens provisórias, trocar pelas fotos de cada serviço -->
-        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-casa-pergolado.jpg"><span class="serif">01</span><h3>Arquitetura residencial</h3><p>Casas pensadas a partir da sua rotina, do terreno e da luz.</p><span class="arr">↗</span></a></li>
-        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-apartamento-luz.jpg"><span class="serif">02</span><h3>Interiores</h3><p>Ambientes acolhedores, com marcenaria, materiais e iluminação sob medida.</p><span class="arr">↗</span></a></li>
-        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-casa-patio.jpg"><span class="serif">03</span><h3>Projetos comerciais</h3><p>Espaços que traduzem a sua marca e funcionam para quem trabalha neles.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-le-chateau.jpg"><span class="serif">01</span><h3>Arquitetura residencial</h3><p>Casas pensadas a partir da sua rotina, do terreno e da luz.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-lavabo-social.jpg"><span class="serif">02</span><h3>Interiores</h3><p>Ambientes acolhedores, com marcenaria, materiais e iluminação sob medida.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/video-comemore-decore.jpg"><span class="serif">03</span><h3>Projetos comerciais</h3><p>Espaços que traduzem a sua marca e funcionam para quem trabalha neles.</p><span class="arr">↗</span></a></li>
         <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-escritorio-terra.jpg"><span class="serif">04</span><h3>Acompanhamento de obra</h3><p>Presença do ateliê na execução, para o projeto sair do papel como foi pensado.</p><span class="arr">↗</span></a></li>
       </ol>
       <div class="serv-preview" aria-hidden="true"><div class="sp-inner"></div></div>
@@ -470,29 +469,50 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 </footer>
 
 <script>
+// video: arquivo .mp4 em assets/ (a imagem de mesmo nome vira a capa)
 const projetos = [
-  { nome: "Casa Pergolado", cat: "Residencial", img: "projeto-casa-pergolado", alt: "Fachada com pergolado de madeira e jardim tropical" },
-  { nome: "Casa Bosque", cat: "Residencial", img: "projeto-casa-bosque", alt: "Varanda com deck e pergolado aberta para o bosque",
-    desc: "Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala." },
-  { nome: "Living Ipê", cat: "Interiores", img: "projeto-living-ipe", alt: "Living com painel em tijolo escuro e marcenaria em madeira" },
-  { nome: "Residência Araucária", cat: "Residencial", img: "projeto-residencia-araucaria", alt: "Fachada de residência com brises de madeira" },
-  { nome: "Apartamento Luz", cat: "Interiores", img: "projeto-apartamento-luz", alt: "Cozinha integrada com forro de madeira e bancada clara" },
-  { nome: "Casa Pátio", cat: "Residencial", img: "projeto-casa-patio", alt: "Recepção com balcão claro e painel ripado" },
-  { nome: "Escritório Terra", cat: "Comercial", img: "projeto-escritorio-terra", alt: "Espaço comercial em obra com mezanino metálico" },
-  { nome: "Casa Serra", cat: "Residencial", img: "projeto-casa-serra", alt: "Cozinha gourmet com banquetas e iluminação pendente" },
+  { nome: "Espaço Gourmet", cat: "Residencial", img: "video-espaco-gourmet", video: true, alt: "Antes e depois de um espaço gourmet residencial com churrasqueira" },
+  { nome: "Comemore & Decore", cat: "Comercial", img: "video-comemore-decore", video: true, alt: "Loja Comemore & Decore com prateleiras de madeira e painel vazado" },
+  { nome: "Le Château", cat: "Projeto arquitetônico", img: "projeto-le-chateau", alt: "Fachada com muxarabi de madeira, cobogós e volumes claros",
+    desc: "Muxarabi de madeira, cobogós e volumes claros que filtram a luz e dão privacidade à fachada." },
+  { nome: "Porcelanato além das superfícies", titulo: "Porcelanato<br>além das<br>superfícies", cat: "Interiores", img: "projeto-porcelanato", alt: "Adega com prateleiras metálicas pretas sobre parede em porcelanato marmorizado",
+    desc: "Porcelanato de veios marcantes como pano de fundo de uma adega em serralheria preta." },
+  { nome: "Casa Rural", cat: "Residencial", img: "video-casa-rural", video: true, alt: "Casa térrea em madeira escura e clara em meio ao campo" },
+  { nome: "Lavabo Social", cat: "Interiores", img: "projeto-lavabo-social", alt: "Lavabo com painel ripado, marcenaria em madeira e espelho orgânico",
+    desc: "Painel ripado, marcenaria em madeira e espelho orgânico em poucos metros quadrados." },
+  { nome: "Cozinha", cat: "Interiores", img: "projeto-cozinha", alt: "Cozinha com churrasqueira em inox, revestimento cerâmico rosado e marcenaria clara",
+    desc: "Revestimento cerâmico artesanal, churrasqueira em inox e marcenaria clara com puxadores esculpidos." },
+  { nome: "Studio", cat: "Interiores", img: "projeto-studio", alt: "Cortes de um studio com cama, cozinha compacta e marcenaria em madeira" },
 ];
 
 // grade de projetos
 const grid = document.getElementById("grid-proj");
 grid.innerHTML = projetos.map((p, i) => `
   <a class="card rv" href="https://www.instagram.com/arq.abicalaffe/" target="_blank" rel="noopener" style="transition-delay:${(i % 4) * 90}ms">
-    <div class="card-img"><img src="assets/${p.img}.jpg" alt="${p.alt}" loading="lazy"></div>
+    <div class="card-img">${p.video
+      ? `<video muted loop playsinline preload="none" poster="assets/${p.img}.jpg" data-src="assets/${p.img}.mp4" aria-label="${p.alt}"></video>`
+      : `<img src="assets/${p.img}.jpg" alt="${p.alt}" loading="lazy">`}</div>
     <div class="card-meta"><strong>${p.nome}</strong><span class="serif">${String(i + 1).padStart(2, "0")}</span><span>${p.cat}</span></div>
   </a>`).join("");
 
+// vídeos da grade: carregam e tocam só quando aparecem na tela
+const videos = [...grid.querySelectorAll("video")];
+function checarVideos() {
+  videos.forEach((v) => {
+    const r = v.getBoundingClientRect();
+    const perto = r.bottom > -200 && r.top < innerHeight + 200;
+    if (perto && !document.hidden) {
+      if (!v.getAttribute("src")) v.src = v.dataset.src;
+      if (v.paused) v.play().catch(() => {});
+    } else if (!v.paused) v.pause();
+  });
+}
+setInterval(checarVideos, 400);
+checarVideos();
+
 // projeto em destaque: carrossel infinito (clones nas pontas)
 const el = (id) => document.getElementById(id);
-const destaques = [1, 3, 7, 4].map((i) => projetos[i]); // Casa Bosque, Residência Araucária, Casa Serra, Apartamento Luz
+const destaques = [2, 5, 6, 3].map((i) => projetos[i]); // Le Château, Lavabo Social, Cozinha, Porcelanato
 const total = destaques.length;
 const track = el("d-track");
 const slides = [destaques[total - 1], ...destaques, destaques[0]];
@@ -509,7 +529,7 @@ function atualizarTexto() {
   const txts = document.querySelectorAll(".destaque .d-txt");
   txts.forEach((n) => n.classList.add("out"));
   setTimeout(() => {
-    el("d-title").innerHTML = p.nome.replace(" ", "<br>");
+    el("d-title").innerHTML = p.titulo || p.nome.replace(" ", "<br>");
     el("d-cat").textContent = `${p.cat} · Projeto em destaque`;
     el("d-desc").textContent = p.desc || "";
     el("d-count").textContent = `${atual + 1} / ${total}`;
@@ -547,7 +567,7 @@ function ajustarTitulo() {
   h.style.fontSize = "";
   let size = parseFloat(getComputedStyle(h).fontSize);
   for (const p of destaques) {
-    h.innerHTML = p.nome.replace(" ", "<br>");
+    h.innerHTML = p.titulo || p.nome.replace(" ", "<br>");
     while (h.scrollWidth > h.clientWidth + 1 && size > 28) {
       size -= 2;
       h.style.fontSize = size + "px";
