@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Abicalaffe Arquitetura | Projetos com alma pra você viver</title>
-<meta name="description" content="Arquitetura e interiores com alma. Ateliê da arquiteta Rita de Cássia Abicalaffe em Guarapuava — PR, com projetos em todo o Brasil.">
+<meta name="description" content="Arquitetura e interiores com alma. Ateliê da arquiteta Rita de Cássia Abicalaffe em Guarapuava, PR, com projetos em todo o Brasil.">
 <meta name="theme-color" content="#1D1B18">
 <meta property="og:title" content="Abicalaffe Arquitetura">
 <meta property="og:description" content="Projetos com alma pra você viver. Arquitetura residencial, interiores, projetos comerciais e acompanhamento de obra.">
@@ -79,7 +79,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes heroIn{to{transform:scale(1)}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(29,27,24,.45) 0%,rgba(29,27,24,.05) 35%,rgba(29,27,24,.15) 60%,rgba(29,27,24,.7) 100%)}
 .hero .wrap{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:28px}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px}
+.hero-top{display:flex;justify-content:flex-end;align-items:flex-end;gap:24px;margin-bottom:40px}
 .hero-top .label{opacity:.85;line-height:2}
 .hero-tag{font-size:clamp(28px,3.06vw,44px);line-height:1;text-align:right}
 .hero-logo{width:100%;height:auto}
@@ -131,10 +131,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .destaque .wrap{position:relative;z-index:2;padding-top:96px;padding-bottom:48px}
 .destaque .head-row{border-color:rgba(244,235,223,.2)}
 .destaque .head-row .serif{color:var(--creme)}
-.destaque-grid{display:grid;grid-template-columns:1fr 500px 1fr;gap:50px;align-items:end;margin-top:58px}
+.destaque-grid{display:grid;grid-template-columns:minmax(0,1fr) 500px minmax(0,1fr);gap:50px;align-items:end;margin-top:58px}
 .destaque h2{font-size:clamp(64px,8.33vw,120px);line-height:.92;letter-spacing:-.035em}
 .destaque-cat{margin-top:24px;font-size:15px;opacity:.7}
-.destaque-img{aspect-ratio:5/6;width:100%;object-fit:cover;transition:opacity .45s var(--ease)}
+.d-car{position:relative;width:100%;aspect-ratio:5/6;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.d-car:active{cursor:grabbing}
+.d-track{display:flex;height:100%;will-change:transform}
+.d-track.anim{transition:transform .9s cubic-bezier(.65,0,.25,1)}
+.d-slide{flex:0 0 100%;height:100%;overflow:hidden}
+.d-slide img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.12);transition:transform 1.2s cubic-bezier(.65,0,.25,1);pointer-events:none}
+.d-slide.on img{transform:scale(1)}
+.d-track.jump .d-slide img{transition:none}
+.d-txt{transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.d-txt.out{opacity:0;transform:translateY(16px)}
 .destaque-right p{opacity:.8;max-width:340px;margin-bottom:40px;min-height:5em}
 .destaque-nav{display:flex;justify-content:space-between;margin-top:48px}
 .destaque-nav button{font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.7;transition:opacity .3s}
@@ -142,10 +151,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .fade{opacity:0}
 
 /* ateliê */
-.atelie{background:var(--areia);padding-top:80px}
-.atelie-grid{display:grid;grid-template-columns:46fr 54fr;max-width:var(--max);margin:0 auto}
+.atelie{background:var(--areia);padding:80px 0}
+.atelie-grid{display:grid;grid-template-columns:46fr 54fr;align-items:center;max-width:var(--max);margin:0 auto}
 .atelie-img{width:100%;height:760px;object-fit:cover;object-position:center 30%}
-.atelie-txt{padding:120px var(--pad) 80px 100px}
+.atelie-txt{padding:0 var(--pad) 0 100px}
 .atelie-txt blockquote{font-size:clamp(34px,3.6vw,52px);font-weight:300;letter-spacing:-.02em;line-height:1.12;margin-top:28px}
 .atelie-txt p{font-size:17px;opacity:.75;margin-top:40px;max-width:600px}
 .dados{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:24px;border-top:1px solid rgba(29,27,24,.2);margin-top:40px;padding-top:28px}
@@ -164,6 +173,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .serv .arr{justify-self:end;font-family:Inter,system-ui,sans-serif;font-size:26px;transition:transform .35s var(--ease)}
 .serv:hover{padding-left:16px;padding-right:16px;background:rgba(232,218,199,.5)}
 .serv:hover .arr{transform:translate(3px,-3px);color:var(--terracota)}
+.serv-preview{position:fixed;left:0;top:0;width:300px;height:380px;pointer-events:none;z-index:60;will-change:transform}
+.sp-inner{position:relative;width:100%;height:100%;overflow:hidden;border-radius:2px;opacity:0;transform:scale(.8) rotate(-3deg);transition:opacity .35s var(--ease),transform .5s var(--ease);box-shadow:0 30px 60px -30px rgba(29,27,24,.5)}
+.serv-preview.show .sp-inner{opacity:1;transform:none}
+.sp-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .4s var(--ease),transform .8s var(--ease)}
+.sp-inner img.on{opacity:1;transform:none}
+@media (hover:none),(pointer:coarse){.serv-preview{display:none}}
 
 /* valores */
 .valores{padding:0 0 100px}
@@ -209,8 +224,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .manifesto-grid{grid-template-columns:1fr 1fr;gap:56px}
   .manifesto-left{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;align-items:flex-end;justify-content:flex-start;gap:24px 48px;padding-top:0}
   .manifesto-left h2{margin-top:0;margin-left:auto}
-  .destaque-grid{grid-template-columns:1fr 1fr}
-  .destaque-left{grid-column:1/-1;order:-1}
+  .destaque-grid{grid-template-columns:1fr;gap:40px}
+  .d-car{width:min(500px,100%);justify-self:center}
+  .destaque-right{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
+  .destaque-right p{margin-bottom:0;min-height:0}
   .serv{grid-template-columns:80px 1fr 320px 40px}
   .rodape-cols{grid-template-columns:1fr 1fr 1fr}
   .rodape .tag{grid-column:1/-1;text-align:left}
@@ -226,7 +243,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .projetos-intro{flex-direction:column;align-items:flex-start;gap:20px}
   .atelie-grid{grid-template-columns:1fr}
   .atelie-img{height:auto;aspect-ratio:4/3}
-  .atelie-txt{padding:72px var(--pad)}
+  .atelie{padding:64px 0}
+  .atelie-txt{padding:56px var(--pad) 0}
   .serv{grid-template-columns:56px 1fr 32px;gap:8px 0}
   .serv p{grid-column:2/3;grid-row:2}
   .serv .arr{grid-row:1/3;grid-column:3}
@@ -246,8 +264,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .card-meta{font-size:12px;grid-template-columns:1fr;gap:2px}
   .card-meta .serif{display:none}
   .projetos-foot{flex-direction:column;align-items:flex-start}
-  .destaque-grid{grid-template-columns:1fr;gap:32px}
-  .destaque-right p{min-height:0}
+  .destaque-grid{gap:32px}
+  .destaque-right{flex-direction:column;align-items:flex-start}
   .dados{grid-template-columns:1fr;gap:20px}
   .servicos h2{margin-bottom:56px}
   .grid-val{grid-template-columns:1fr}
@@ -265,7 +283,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <header class="header" id="topo">
   <div class="wrap">
-    <a href="#" aria-label="Abicalaffe Arquitetura — início"><svg class="logo" aria-label="Abicalaffe Arquitetura" role="img" viewBox="0 0 170 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.0976 1.12781C16.223 1.12565 18.3164 1.64585 20.1936 2.64266C22.0707 3.63946 23.6742 5.08232 24.8628 6.84429C26.0514 8.60626 26.7888 10.6333 27.0101 12.7472C27.2314 14.8611 26.9298 16.9969 26.1318 18.9668C25.3339 20.9368 24.0641 22.6804 22.434 24.0444C20.804 25.4083 18.8638 26.3508 16.784 26.7889C14.7042 27.2269 12.5486 27.1471 10.5069 26.5566C8.46523 25.966 6.59995 24.8827 5.0752 23.402" stroke-width="1.5" stroke-linecap="round" stroke="currentColor"/><path d="M18.3269 12.4059C18.3269 14.7417 16.4334 16.6352 14.0977 16.6352C11.7619 16.6352 9.86841 14.7417 9.86841 12.4059C9.86841 10.0701 11.7619 8.17664 14.0977 8.17664C16.4334 8.17664 18.3269 10.0701 18.3269 12.4059Z" stroke-width="1.5" stroke="currentColor"/><path d="M7.61279 25.9396L14.0977 10.4323L21.4284 27.0674" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M39.8049 20.0975L44.6943 7.0349H45.6612L50.4229 20.0975H49.3282L45.7342 9.95392C45.6855 9.8323 45.6247 9.6681 45.5518 9.46134C45.4909 9.25457 45.4241 9.03565 45.3511 8.80456C45.2781 8.57347 45.2112 8.3667 45.1504 8.18427C45.0896 8.39103 45.0227 8.60996 44.9497 8.84105C44.8889 9.05997 44.822 9.26674 44.749 9.46134C44.6882 9.65594 44.6335 9.8323 44.5848 9.99041L40.8813 20.0975H39.8049ZM56.7719 13.2378V12.654H58.7605C59.2592 12.654 59.7153 12.575 60.1288 12.4169C60.5423 12.2587 60.8707 12.0216 61.114 11.7053C61.3572 11.3769 61.4788 10.9634 61.4788 10.4648C61.4788 9.75932 61.2295 9.21201 60.7308 8.8228C60.2443 8.42144 59.5875 8.22075 58.7605 8.22075H56.9908V19.2036H58.9429C59.5875 19.2036 60.1531 19.0941 60.6396 18.8752C61.1261 18.6563 61.5032 18.34 61.7707 17.9265C62.0383 17.5008 62.1721 16.9717 62.1721 16.3393C62.1721 15.8893 62.087 15.494 61.9167 15.1534C61.7464 14.8007 61.5092 14.5088 61.2052 14.2777C60.9011 14.0345 60.5545 13.852 60.1653 13.7304C59.7882 13.6088 59.3808 13.548 58.9429 13.548H56.7719V12.9642H59.0159C59.5389 12.9642 60.0497 13.0371 60.5484 13.1831C61.0471 13.3169 61.491 13.5236 61.8802 13.8034C62.2816 14.0831 62.5978 14.4419 62.8289 14.8798C63.0721 15.3055 63.1938 15.8102 63.1938 16.394C63.1938 17.2332 63.0113 17.9265 62.6464 18.4738C62.2816 19.0211 61.7768 19.4286 61.1322 19.6962C60.4997 19.9637 59.77 20.0975 58.9429 20.0975H55.9874V7.3268H58.7605C59.5267 7.3268 60.1835 7.44235 60.7308 7.67344C61.2903 7.90453 61.7221 8.25116 62.0261 8.71334C62.3302 9.16335 62.4822 9.72892 62.4822 10.41C62.4822 11.0303 62.3241 11.5533 62.0079 11.979C61.7038 12.3925 61.2781 12.7088 60.7308 12.9277C60.1835 13.1344 59.5511 13.2378 58.8335 13.2378H56.7719ZM69.6923 7.3268H70.6957V20.0975H69.6923V7.3268ZM78.0799 13.7122C78.0799 14.7946 78.311 15.7494 78.7732 16.5765C79.2354 17.4035 79.8557 18.0542 80.6341 18.5286C81.4125 19.0029 82.2821 19.2401 83.243 19.2401C83.8511 19.2401 84.4045 19.1732 84.9031 19.0394C85.4018 18.9056 85.8518 18.7049 86.2532 18.4373C86.6667 18.1698 87.0316 17.8535 87.3478 17.4887V18.8387C86.8127 19.313 86.2289 19.6718 85.5964 19.9151C84.964 20.1462 84.1795 20.2617 83.243 20.2617C82.3551 20.2617 81.528 20.1036 80.7618 19.7874C80.0077 19.459 79.3509 19.0029 78.7914 18.4191C78.232 17.8353 77.7941 17.142 77.4779 16.3393C77.1617 15.5366 77.0035 14.6609 77.0035 13.7122C77.0035 12.7635 77.1617 11.8878 77.4779 11.085C77.7941 10.2823 78.232 9.58905 78.7914 9.00524C79.3509 8.42144 80.0077 7.97142 80.7618 7.65519C81.528 7.3268 82.3551 7.16261 83.243 7.16261C84.1795 7.16261 84.964 7.28423 85.5964 7.52749C86.2289 7.75857 86.8127 8.11129 87.3478 8.58563V9.91744C87.0316 9.55256 86.6667 9.24241 86.2532 8.987C85.8397 8.71942 85.3836 8.51874 84.8849 8.38495C84.3862 8.25116 83.8389 8.18427 83.243 8.18427C82.2821 8.18427 81.4125 8.42144 80.6341 8.89578C79.8557 9.35796 79.2354 10.0026 78.7732 10.8296C78.311 11.6567 78.0799 12.6175 78.0799 13.7122ZM92.7037 20.0975L97.5931 7.0349H98.56L103.322 20.0975H102.227L98.633 9.95392C98.5843 9.8323 98.5235 9.6681 98.4505 9.46134C98.3897 9.25457 98.3228 9.03565 98.2498 8.80456C98.1769 8.57347 98.11 8.3667 98.0492 8.18427C97.9883 8.39103 97.9215 8.60996 97.8485 8.84105C97.7877 9.05997 97.7208 9.26674 97.6478 9.46134C97.587 9.65594 97.5322 9.8323 97.4836 9.99041L93.7801 20.0975H92.7037ZM108.886 7.3268H109.89V19.1489H115.162V20.0975H108.886V7.3268ZM119.438 20.0975L124.328 7.0349H125.294L130.056 20.0975H128.961L125.367 9.95392C125.319 9.8323 125.258 9.6681 125.185 9.46134C125.124 9.25457 125.057 9.03565 124.984 8.80456C124.911 8.57347 124.844 8.3667 124.784 8.18427C124.723 8.39103 124.656 8.60996 124.583 8.84105C124.522 9.05997 124.455 9.26674 124.382 9.46134C124.321 9.65594 124.267 9.8323 124.218 9.99041L120.515 20.0975H119.438ZM136.15 8.27549V7.3268H141.751V8.27549H136.15ZM136.15 13.6574V12.7088H141.568V13.6574H136.15ZM135.621 7.3268H136.624V20.0975H135.621V7.3268ZM148.929 8.27549V7.3268H154.53V8.27549H148.929ZM148.929 13.6574V12.7088H154.347V13.6574H148.929ZM148.4 7.3268H149.403V20.0975H148.4V7.3268ZM161.708 20.0975V19.1489H168.039V20.0975H161.708ZM161.708 8.27549V7.3268H168.039V8.27549H161.708ZM161.708 13.5662V12.6175H167.674V13.5662H161.708ZM161.179 7.3268H162.183V20.0975H161.179V7.3268Z" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="Abicalaffe Arquitetura, início"><svg class="logo" aria-label="Abicalaffe Arquitetura" role="img" viewBox="0 0 170 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.0976 1.12781C16.223 1.12565 18.3164 1.64585 20.1936 2.64266C22.0707 3.63946 23.6742 5.08232 24.8628 6.84429C26.0514 8.60626 26.7888 10.6333 27.0101 12.7472C27.2314 14.8611 26.9298 16.9969 26.1318 18.9668C25.3339 20.9368 24.0641 22.6804 22.434 24.0444C20.804 25.4083 18.8638 26.3508 16.784 26.7889C14.7042 27.2269 12.5486 27.1471 10.5069 26.5566C8.46523 25.966 6.59995 24.8827 5.0752 23.402" stroke-width="1.5" stroke-linecap="round" stroke="currentColor"/><path d="M18.3269 12.4059C18.3269 14.7417 16.4334 16.6352 14.0977 16.6352C11.7619 16.6352 9.86841 14.7417 9.86841 12.4059C9.86841 10.0701 11.7619 8.17664 14.0977 8.17664C16.4334 8.17664 18.3269 10.0701 18.3269 12.4059Z" stroke-width="1.5" stroke="currentColor"/><path d="M7.61279 25.9396L14.0977 10.4323L21.4284 27.0674" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/><path d="M39.8049 20.0975L44.6943 7.0349H45.6612L50.4229 20.0975H49.3282L45.7342 9.95392C45.6855 9.8323 45.6247 9.6681 45.5518 9.46134C45.4909 9.25457 45.4241 9.03565 45.3511 8.80456C45.2781 8.57347 45.2112 8.3667 45.1504 8.18427C45.0896 8.39103 45.0227 8.60996 44.9497 8.84105C44.8889 9.05997 44.822 9.26674 44.749 9.46134C44.6882 9.65594 44.6335 9.8323 44.5848 9.99041L40.8813 20.0975H39.8049ZM56.7719 13.2378V12.654H58.7605C59.2592 12.654 59.7153 12.575 60.1288 12.4169C60.5423 12.2587 60.8707 12.0216 61.114 11.7053C61.3572 11.3769 61.4788 10.9634 61.4788 10.4648C61.4788 9.75932 61.2295 9.21201 60.7308 8.8228C60.2443 8.42144 59.5875 8.22075 58.7605 8.22075H56.9908V19.2036H58.9429C59.5875 19.2036 60.1531 19.0941 60.6396 18.8752C61.1261 18.6563 61.5032 18.34 61.7707 17.9265C62.0383 17.5008 62.1721 16.9717 62.1721 16.3393C62.1721 15.8893 62.087 15.494 61.9167 15.1534C61.7464 14.8007 61.5092 14.5088 61.2052 14.2777C60.9011 14.0345 60.5545 13.852 60.1653 13.7304C59.7882 13.6088 59.3808 13.548 58.9429 13.548H56.7719V12.9642H59.0159C59.5389 12.9642 60.0497 13.0371 60.5484 13.1831C61.0471 13.3169 61.491 13.5236 61.8802 13.8034C62.2816 14.0831 62.5978 14.4419 62.8289 14.8798C63.0721 15.3055 63.1938 15.8102 63.1938 16.394C63.1938 17.2332 63.0113 17.9265 62.6464 18.4738C62.2816 19.0211 61.7768 19.4286 61.1322 19.6962C60.4997 19.9637 59.77 20.0975 58.9429 20.0975H55.9874V7.3268H58.7605C59.5267 7.3268 60.1835 7.44235 60.7308 7.67344C61.2903 7.90453 61.7221 8.25116 62.0261 8.71334C62.3302 9.16335 62.4822 9.72892 62.4822 10.41C62.4822 11.0303 62.3241 11.5533 62.0079 11.979C61.7038 12.3925 61.2781 12.7088 60.7308 12.9277C60.1835 13.1344 59.5511 13.2378 58.8335 13.2378H56.7719ZM69.6923 7.3268H70.6957V20.0975H69.6923V7.3268ZM78.0799 13.7122C78.0799 14.7946 78.311 15.7494 78.7732 16.5765C79.2354 17.4035 79.8557 18.0542 80.6341 18.5286C81.4125 19.0029 82.2821 19.2401 83.243 19.2401C83.8511 19.2401 84.4045 19.1732 84.9031 19.0394C85.4018 18.9056 85.8518 18.7049 86.2532 18.4373C86.6667 18.1698 87.0316 17.8535 87.3478 17.4887V18.8387C86.8127 19.313 86.2289 19.6718 85.5964 19.9151C84.964 20.1462 84.1795 20.2617 83.243 20.2617C82.3551 20.2617 81.528 20.1036 80.7618 19.7874C80.0077 19.459 79.3509 19.0029 78.7914 18.4191C78.232 17.8353 77.7941 17.142 77.4779 16.3393C77.1617 15.5366 77.0035 14.6609 77.0035 13.7122C77.0035 12.7635 77.1617 11.8878 77.4779 11.085C77.7941 10.2823 78.232 9.58905 78.7914 9.00524C79.3509 8.42144 80.0077 7.97142 80.7618 7.65519C81.528 7.3268 82.3551 7.16261 83.243 7.16261C84.1795 7.16261 84.964 7.28423 85.5964 7.52749C86.2289 7.75857 86.8127 8.11129 87.3478 8.58563V9.91744C87.0316 9.55256 86.6667 9.24241 86.2532 8.987C85.8397 8.71942 85.3836 8.51874 84.8849 8.38495C84.3862 8.25116 83.8389 8.18427 83.243 8.18427C82.2821 8.18427 81.4125 8.42144 80.6341 8.89578C79.8557 9.35796 79.2354 10.0026 78.7732 10.8296C78.311 11.6567 78.0799 12.6175 78.0799 13.7122ZM92.7037 20.0975L97.5931 7.0349H98.56L103.322 20.0975H102.227L98.633 9.95392C98.5843 9.8323 98.5235 9.6681 98.4505 9.46134C98.3897 9.25457 98.3228 9.03565 98.2498 8.80456C98.1769 8.57347 98.11 8.3667 98.0492 8.18427C97.9883 8.39103 97.9215 8.60996 97.8485 8.84105C97.7877 9.05997 97.7208 9.26674 97.6478 9.46134C97.587 9.65594 97.5322 9.8323 97.4836 9.99041L93.7801 20.0975H92.7037ZM108.886 7.3268H109.89V19.1489H115.162V20.0975H108.886V7.3268ZM119.438 20.0975L124.328 7.0349H125.294L130.056 20.0975H128.961L125.367 9.95392C125.319 9.8323 125.258 9.6681 125.185 9.46134C125.124 9.25457 125.057 9.03565 124.984 8.80456C124.911 8.57347 124.844 8.3667 124.784 8.18427C124.723 8.39103 124.656 8.60996 124.583 8.84105C124.522 9.05997 124.455 9.26674 124.382 9.46134C124.321 9.65594 124.267 9.8323 124.218 9.99041L120.515 20.0975H119.438ZM136.15 8.27549V7.3268H141.751V8.27549H136.15ZM136.15 13.6574V12.7088H141.568V13.6574H136.15ZM135.621 7.3268H136.624V20.0975H135.621V7.3268ZM148.929 8.27549V7.3268H154.53V8.27549H148.929ZM148.929 13.6574V12.7088H154.347V13.6574H148.929ZM148.4 7.3268H149.403V20.0975H148.4V7.3268ZM161.708 20.0975V19.1489H168.039V20.0975H161.708ZM161.708 8.27549V7.3268H168.039V8.27549H161.708ZM161.708 13.5662V12.6175H167.674V13.5662H161.708ZM161.179 7.3268H162.183V20.0975H161.179V7.3268Z" fill="currentColor"/></svg></a>
     <nav id="menu" aria-label="Principal">
       <a href="#projetos">Projetos</a>
       <a href="#atelie">Ateliê</a>
@@ -273,7 +291,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <a href="#processo">Processo</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a class="btn btn-claro" href="https://wa.me/554284127051" target="_blank" rel="noopener">Agende um café <span class="arr">↗</span></a>
+    <a class="btn btn-claro" href="#contato">Entrar em contato <span class="arr">↗</span></a>
     <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -283,7 +301,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <img class="hero-img" src="assets/hero.jpg" alt="Sala de estar com escada escultural, painel de madeira e sofás curvos" fetchpriority="high">
     <div class="wrap">
       <div class="hero-top">
-        <p class="label">Arquitetura &amp; Interiores<br>Guarapuava — PR · Todo o Brasil</p>
         <p class="hero-tag serif">projetos com alma<br>pra você viver.</p>
       </div>
       <img class="hero-logo" src="assets/logo-claro.svg" alt="Abicalaffe" width="1276" height="212">
@@ -293,8 +310,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <section class="manifesto">
     <div class="wrap">
-      <div class="head-row rv"><span class="label">01 — Manifesto</span></div>
-      <h1 class="rv">Somos quem faz projetos com alma — para você viver o real, e não o catálogo.</h1>
+      <div class="head-row rv"><span class="label">01 · Manifesto</span></div>
+      <h1 class="rv">Somos quem faz projetos com alma, para você viver o real, e não o catálogo.</h1>
       <div class="manifesto-grid">
         <div class="manifesto-left rv">
           <div>
@@ -307,7 +324,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <img class="manifesto-img rv" src="assets/projeto-living-ipe.jpg" alt="Living com painel em tijolo escuro, marcenaria em madeira e um cachorro sentado ao centro" loading="lazy">
         <div class="manifesto-text rv">
           <p>A Abicalaffe Arquitetura nasce do olhar da arquiteta Rita de Cássia Abicalaffe: uma arquitetura humana, que começa pela escuta e termina em espaços onde a vida acontece com leveza.</p>
-          <p>Como o camaleão do nosso símbolo, nos adaptamos a cada pessoa, terreno e história — sem perder a assinatura: linhas limpas, materiais naturais e luz bem pensada.</p>
+          <p>Como o camaleão do nosso símbolo, nos adaptamos a cada pessoa, terreno e história, sem perder a assinatura: linhas limpas, materiais naturais e luz bem pensada.</p>
           <a class="btn btn-terracota" href="#atelie">Conheça o ateliê <span class="arr">↗</span></a>
         </div>
       </div>
@@ -323,10 +340,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <section class="projetos" id="projetos">
     <div class="wrap">
-      <div class="head-row rv"><span class="label">02 — Seleção de projetos</span><span class="serif">(08)</span></div>
+      <div class="head-row rv"><span class="label">02 · Seleção de projetos</span><span class="serif">(08)</span></div>
       <div class="projetos-intro rv">
         <h2 class="display">Projetos com vida.</h2>
-        <p>Casas e interiores assinados pelo ateliê — do terreno ao último detalhe.</p>
+        <p>Casas e interiores assinados pelo ateliê, do terreno ao último detalhe.</p>
       </div>
       <div class="grid-proj" id="grid-proj"></div>
       <div class="projetos-foot rv">
@@ -339,15 +356,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <section class="destaque" aria-label="Projeto em destaque">
     <img class="destaque-bg" src="assets/hero.jpg" alt="" loading="lazy">
     <div class="wrap">
-      <div class="head-row"><span class="label">03 — Em destaque</span><span class="serif" id="d-count">2 / 8</span></div>
+      <div class="head-row"><span class="label">03 · Em destaque</span><span class="serif" id="d-count">2 / 8</span></div>
       <div class="destaque-grid">
-        <div class="destaque-left">
+        <div class="destaque-left d-txt">
           <h2 class="display" id="d-title">Casa<br>Bosque</h2>
           <p class="destaque-cat" id="d-cat">Residencial · Projeto em destaque</p>
         </div>
-        <img class="destaque-img" id="d-img" src="assets/projeto-casa-bosque.jpg" alt="Casa Bosque: pergolado de madeira aberto para o bosque" loading="lazy">
+        <div class="d-car" id="d-car" aria-roledescription="carrossel"><div class="d-track" id="d-track"></div></div>
         <div class="destaque-right">
-          <p id="d-desc">Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala.</p>
+          <p class="d-txt" id="d-desc">Uma casa aberta para o bosque: pergolado de madeira, concreto aparente e vidro do piso ao teto para que a mata seja parte da sala.</p>
           <a class="btn btn-creme" href="https://www.instagram.com/arq.abicalaffe/" target="_blank" rel="noopener">Ver projeto <span class="arr">↗</span></a>
         </div>
       </div>
@@ -362,7 +379,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="atelie-grid">
       <img class="atelie-img rv" src="assets/atelie.jpg" alt="Rita de Cássia conversando com clientes no ateliê, em volta de uma mesa com amostras de materiais" loading="lazy">
       <div class="atelie-txt">
-        <p class="label rv">04 — O ateliê</p>
+        <p class="label rv">04 · O ateliê</p>
         <blockquote class="rv">“Mais do que um projeto, entregar espaços com alma, valor e sentimento.”</blockquote>
         <p class="rv">Um só olhar acompanha o seu projeto do começo ao fim, para que arquitetura e interiores conversem entre si. Do primeiro café à entrega das chaves.</p>
         <div class="dados rv">
@@ -377,20 +394,22 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <section class="servicos" id="servicos">
     <div class="wrap">
-      <p class="label rv">05 — Serviços</p>
+      <p class="label rv">05 · Serviços</p>
       <h2 class="display rv">Do terreno ao último detalhe.</h2>
       <ol>
-        <li class="rv"><a class="serv" href="#contato"><span class="serif">01</span><h3>Arquitetura residencial</h3><p>Casas pensadas a partir da sua rotina, do terreno e da luz.</p><span class="arr">↗</span></a></li>
-        <li class="rv"><a class="serv" href="#contato"><span class="serif">02</span><h3>Interiores</h3><p>Ambientes acolhedores, com marcenaria, materiais e iluminação sob medida.</p><span class="arr">↗</span></a></li>
-        <li class="rv"><a class="serv" href="#contato"><span class="serif">03</span><h3>Projetos comerciais</h3><p>Espaços que traduzem a sua marca e funcionam para quem trabalha neles.</p><span class="arr">↗</span></a></li>
-        <li class="rv"><a class="serv" href="#contato"><span class="serif">04</span><h3>Acompanhamento de obra</h3><p>Presença do ateliê na execução, para o projeto sair do papel como foi pensado.</p><span class="arr">↗</span></a></li>
+        <!-- data-img: imagens provisórias, trocar pelas fotos de cada serviço -->
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-casa-pergolado.jpg"><span class="serif">01</span><h3>Arquitetura residencial</h3><p>Casas pensadas a partir da sua rotina, do terreno e da luz.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-apartamento-luz.jpg"><span class="serif">02</span><h3>Interiores</h3><p>Ambientes acolhedores, com marcenaria, materiais e iluminação sob medida.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-casa-patio.jpg"><span class="serif">03</span><h3>Projetos comerciais</h3><p>Espaços que traduzem a sua marca e funcionam para quem trabalha neles.</p><span class="arr">↗</span></a></li>
+        <li class="rv"><a class="serv" href="#contato" data-img="assets/projeto-escritorio-terra.jpg"><span class="serif">04</span><h3>Acompanhamento de obra</h3><p>Presença do ateliê na execução, para o projeto sair do papel como foi pensado.</p><span class="arr">↗</span></a></li>
       </ol>
+      <div class="serv-preview" aria-hidden="true"><div class="sp-inner"></div></div>
     </div>
   </section>
 
   <section class="valores" id="processo">
     <div class="wrap">
-      <p class="label rv">06 — O que nos move</p>
+      <p class="label rv">06 · O que nos move</p>
       <div class="grid-val">
         <article class="val v1 rv"><span class="serif">01</span><div><h3>Escuta</h3><p>Todo projeto começa ouvindo. Entender a sua rotina é o primeiro traço.</p></div></article>
         <article class="val v2 rv"><span class="serif">02</span><div><h3>Alma</h3><p>Espaços com valor e sentimento, que contam a história de quem vive neles.</p></div></article>
@@ -403,9 +422,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <section class="contato" id="contato">
     <div class="wrap">
       <div>
-        <p class="label rv">07 — Vamos conversar</p>
+        <p class="label rv">07 · Vamos conversar</p>
         <h2 class="display rv">Abra-se para o<br>real viver.</h2>
-        <p class="rv">Conte para a gente sobre o seu espaço. Respondemos pessoalmente e marcamos um café — no ateliê em Guarapuava ou por vídeo, de qualquer lugar do Brasil.</p>
+        <p class="rv">Conte para a gente sobre o seu espaço. Respondemos pessoalmente e marcamos um café, no ateliê em Guarapuava ou por vídeo, de qualquer lugar do Brasil.</p>
         <div class="ctas rv">
           <a class="btn btn-terracota" href="https://wa.me/554284127051" target="_blank" rel="noopener">Chamar no WhatsApp <span class="arr">↗</span></a>
           <a class="btn btn-claro" href="#projetos">Ver todos os projetos <span class="arr">↗</span></a>
@@ -424,7 +443,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="rodape-cols">
       <div>
         <span class="label">Ateliê</span>
-        <address><a href="https://maps.app.goo.gl/Wcvv4gR7E1HmQiGMA" target="_blank" rel="noopener">Rua Capitão Frederico Virmond, 1936<br>1º andar — Centro<br>Guarapuava — PR, 85010-120</a></address>
+        <address><a href="https://maps.app.goo.gl/Wcvv4gR7E1HmQiGMA" target="_blank" rel="noopener">Rua Capitão Frederico Virmond, 1936<br>1º andar, Centro<br>Guarapuava, PR · 85010-120</a></address>
       </div>
       <div>
         <span class="label">Contato</span>
@@ -462,27 +481,99 @@ grid.innerHTML = projetos.map((p, i) => `
     <div class="card-meta"><strong>${p.nome}</strong><span class="serif">${String(i + 1).padStart(2, "0")}</span><span>${p.cat}</span></div>
   </a>`).join("");
 
-// projeto em destaque
-let atual = 1;
+// projeto em destaque: carrossel infinito (clones nas pontas)
 const el = (id) => document.getElementById(id);
-function mostrar(i) {
-  atual = (i + projetos.length) % projetos.length;
+const total = projetos.length;
+const track = el("d-track");
+const slides = [projetos[total - 1], ...projetos, projetos[0]];
+track.innerHTML = slides.map((p) => `<div class="d-slide"><img src="assets/${p.img}.jpg" alt="${p.alt}" draggable="false" decoding="async"></div>`).join("");
+let atual = 1, pos = atual + 1, ocupado = false;
+
+function posicionar(animar) {
+  track.classList.toggle("anim", animar);
+  track.style.transform = `translateX(${-pos * 100}%)`;
+  [...track.children].forEach((s, i) => s.classList.toggle("on", i === pos));
+}
+function atualizarTexto() {
   const p = projetos[atual];
-  const nodes = [el("d-img"), el("d-title"), el("d-cat"), el("d-desc")];
-  nodes.forEach((n) => n.classList.add("fade"));
+  const txts = document.querySelectorAll(".destaque .d-txt");
+  txts.forEach((n) => n.classList.add("out"));
   setTimeout(() => {
-    el("d-img").src = `assets/${p.img}.jpg`;
-    el("d-img").alt = p.alt;
     el("d-title").innerHTML = p.nome.replace(" ", "<br>");
     el("d-cat").textContent = `${p.cat} · Projeto em destaque`;
     el("d-desc").textContent = p.desc || "";
-    el("d-count").textContent = `${atual + 1} / ${projetos.length}`;
-    nodes.forEach((n) => n.classList.remove("fade"));
-  }, 250);
+    el("d-count").textContent = `${atual + 1} / ${total}`;
+    txts.forEach((n) => n.classList.remove("out"));
+  }, 400);
 }
-["d-img", "d-title", "d-cat", "d-desc"].forEach((id) => (el(id).style.transition = "opacity .25s ease"));
-el("d-prev").addEventListener("click", () => mostrar(atual - 1));
-el("d-next").addEventListener("click", () => mostrar(atual + 1));
+function ir(dir) {
+  if (ocupado) return;
+  ocupado = true;
+  pos += dir;
+  atual = (atual + dir + total) % total;
+  posicionar(true);
+  atualizarTexto();
+  clearTimeout(ir.t);
+  ir.t = setTimeout(fim, 1000); // garante o destravamento se não houver transição (reduced motion)
+}
+track.addEventListener("transitionend", (e) => { if (e.target === track) fim(); });
+function fim() {
+  clearTimeout(ir.t);
+  if (pos === 0 || pos === total + 1) {
+    pos = pos === 0 ? total : 1;
+    track.classList.add("jump");
+    posicionar(false);
+    track.offsetWidth;
+    track.classList.remove("jump");
+  }
+  ocupado = false;
+}
+posicionar(false);
+el("d-prev").addEventListener("click", () => ir(-1));
+el("d-next").addEventListener("click", () => ir(1));
+
+// arrastar no carrossel
+let x0 = null;
+const car = el("d-car");
+car.addEventListener("pointerdown", (e) => { x0 = e.clientX; });
+car.addEventListener("pointerup", (e) => {
+  if (x0 === null) return;
+  const dx = e.clientX - x0;
+  x0 = null;
+  if (Math.abs(dx) > 40) ir(dx < 0 ? 1 : -1);
+});
+car.addEventListener("pointerleave", () => { x0 = null; });
+
+// serviços: imagem que segue o cursor
+const preview = document.querySelector(".serv-preview");
+if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
+  const inner = preview.querySelector(".sp-inner");
+  const servs = [...document.querySelectorAll(".serv")];
+  servs.forEach((s) => { const i = new Image(); i.src = s.dataset.img; i.alt = ""; inner.appendChild(i); });
+  const imgs = [...inner.children];
+  let mx = 0, my = 0, px = 0, py = 0, rodando = false;
+  const passo = () => {
+    px += (mx - px) * 0.14;
+    py += (my - py) * 0.14;
+    preview.style.transform = `translate3d(${px - 150}px, ${py - 190}px, 0)`;
+    if (preview.classList.contains("show") || Math.abs(mx - px) > 0.5) requestAnimationFrame(passo);
+    else rodando = false;
+  };
+  const mover = (e) => {
+    mx = e.clientX; my = e.clientY;
+    if (!rodando) { rodando = true; requestAnimationFrame(passo); }
+  };
+  servs.forEach((s, i) => {
+    s.addEventListener("mouseenter", (e) => {
+      if (!preview.classList.contains("show")) { px = mx = e.clientX; py = my = e.clientY; }
+      imgs.forEach((im, j) => im.classList.toggle("on", j === i));
+      preview.classList.add("show");
+      mover(e);
+    });
+    s.addEventListener("mousemove", mover);
+  });
+  document.querySelector(".servicos ol").addEventListener("mouseleave", () => preview.classList.remove("show"));
+}
 
 // header
 const header = document.querySelector(".header");
