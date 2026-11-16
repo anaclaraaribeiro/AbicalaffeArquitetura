@@ -10,6 +10,7 @@
 <meta property="og:description" content="Projetos com alma pra você viver. Arquitetura residencial, interiores, projetos comerciais e acompanhamento de obra.">
 <meta property="og:image" content="assets/hero.jpg">
 <meta property="og:type" content="website">
+<script>if('scrollRestoration' in history)history.scrollRestoration='manual';window.addEventListener('beforeunload',function(){window.scrollTo(0,0)});if(location.hash){history.replaceState(null,'',location.pathname+location.search)}window.scrollTo(0,0);</script>
 <link rel="icon" type="image/svg+xml" href="assets/simbolo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,7 +216,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .rodape a:hover{color:var(--terracota)}
 .rodape .tag{font-size:30px;line-height:1;color:var(--terracota);text-align:right}
 .rodape-logo{width:100%;height:auto;margin:88px 0 60px}
-.rodape-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(244,235,223,.15);padding-top:20px;font-size:13px;opacity:.5}
+.rodape-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(244,235,223,.15);padding-top:20px;font-size:13px;color:rgba(244,235,223,.5)}
+.rodape-base .credito{color:var(--creme);text-decoration:underline;text-decoration-color:rgba(244,235,223,.35);text-underline-offset:3px;transition:color .3s,text-decoration-color .3s}
+.rodape-base .credito:hover{color:var(--terracota);text-decoration-color:currentColor}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -494,7 +497,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <p class="tag serif">projetos com alma<br>pra você viver.</p>
     </div>
     <img class="rodape-logo" src="assets/logo-claro.svg" alt="Abicalaffe" width="1276" height="212" loading="lazy">
-    <div class="rodape-base"><span>© 2026 Abicalaffe Arquitetura. Todos os direitos reservados.</span><span>Arquitetura e Interiores · Rita de Cássia Abicalaffe</span></div>
+    <div class="rodape-base"><span>© 2026 Abicalaffe Arquitetura. Todos os direitos reservados.</span><span>Arquitetura e Interiores · Rita de Cássia Abicalaffe</span><span>Site por <a class="credito" href="https://www.lowna.com.br" target="_blank" rel="noopener">Löwna Studios</a></span></div>
   </div>
 </footer>
 
