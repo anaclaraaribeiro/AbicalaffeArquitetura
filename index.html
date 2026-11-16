@@ -219,6 +219,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .rodape-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(244,235,223,.15);padding-top:20px;font-size:13px;color:rgba(244,235,223,.5)}
 .rodape-base .credito{color:var(--creme);text-decoration:underline;text-decoration-color:rgba(244,235,223,.35);text-underline-offset:3px;transition:color .3s,text-decoration-color .3s}
 .rodape-base .credito:hover{color:var(--terracota);text-decoration-color:currentColor}
+@media (min-width:601px){.rodape-base span:nth-child(2){order:3}.rodape-base span:nth-child(3){order:2}}
 
 /* reveal */
 .rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
